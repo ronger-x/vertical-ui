@@ -2,7 +2,7 @@
     <el-row>
         <el-col :span="16">
             <el-row>
-                <el-col v-for="article in articles">
+                <el-col v-for="article in articles" :key="article.id">
                     <el-card>
                         <div class="card-body d-flex flex-column">
                             <h4><a v-bind:href="article.articlePermalink">{{ article.articleTitle }}</a></h4>
@@ -51,8 +51,8 @@
         async mounted () {
             const responseTopData = await this.axios.get('/api/getArticles')
             if (responseTopData) {
-                this.$set(this, 'articles', responseTopData.data.data)
-                this.$set(this, 'pagination', responseTopData.data.pagination)
+                this.$set(this, 'articles', responseTopData.data)
+                this.$set(this, 'pagination', responseTopData.pagination)
             }
         }
     }
