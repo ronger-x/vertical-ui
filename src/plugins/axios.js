@@ -24,23 +24,25 @@ export default (ctx) => {
     customAxios.interceptors.response.use((response) => {
         if (response.config.method === 'get' || response.config.method === 'delete') {
             // get and delete use snack tip
-            if (response.data.code === 0) {
+            if (response.data.code === 0 || response.data.sc === 0) {
                 return response.data.data
             } else {
-                ctx.store.commit('setSnackBar', {
+                console.log(response.data.msg);
+                /*ctx.store.commit('setSnackBar', {
                     snackBar: true,
                     snackMsg: response.data.msg
-                })
+                })*/
             }
         } else {
             // other, deal with yourself
             return response.data
         }
     }, (error) => {
-        ctx.store.commit('setSnackBar', {
+        console.log(ctx.app.store.state.locale)
+        /*ctx.store.commit('setSnackBar', {
             snackBar: true,
             snackMsg: ctx.app.i18n.t('requestError', ctx.app.store.state.locale)
-        })
+        })*/
         return Promise.reject(error)
     })
 

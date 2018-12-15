@@ -5,7 +5,7 @@
             <div class="vertical-container">
                 <a class="navbar-brand" href="/">
                     <img src="./assets/logo.png" alt="Vertical" class="navbar-brand-img">
-                    <span>罗吉网</span>
+                    <span>Vertical</span>
                 </a>
             </div>
         </el-header>
@@ -27,11 +27,13 @@
 
 <script>
 import VerticalHome from "./pages/index";
+import HacPai from "./pages/hacpai/index";
+import Comments from "./pages/hacpai/comments/index";
 export default {
-    components: {VerticalHome},
+    components: {VerticalHome, HacPai, Comments},
     data () {
         return {
-            currentPage: 'VerticalHome'
+            currentPage: 'HacPai'
         }
     },
     computed: {
@@ -41,7 +43,9 @@ export default {
     },
     methods: {
         changePage(data){
-            this.currentPage = data;
+            //console.log(this.state.articleId);
+            this.currentPage = data.currentPage;
+            //this.state.articleId = data.articleId
         }
     }
 }
@@ -155,5 +159,43 @@ export default {
     }
     .mr-3, .mx-3 {
         margin-right: 0.75rem !important;
+    }
+    .el-col {
+        margin-bottom: 1.5rem;
+    }
+    .article-summary-md {
+        position:relative;
+        line-height:1.4em;
+        /* 3 times the line-height to show 3 lines */
+        height:4.2em;
+        overflow:hidden;
+    }
+
+    .article-summary-md::after {
+        content:"...";
+        font-weight:bold;
+        position:absolute;
+        bottom:0;
+        right:0;
+        padding:0 20px 1px 45px;
+        background:url(http://newimg88.b0.upaiyun.com/newimg88/2014/09/ellipsis_bg.png) repeat-y;
+    }
+
+    .article-summary-sd {
+        position:relative;
+        line-height:1.4em;
+        /* 1 times the line-height to show 1 lines */
+        height:1.4em;
+        overflow:hidden;
+    }
+
+    .article-summary-sd::after {
+        content:"...";
+        font-weight:bold;
+        position:absolute;
+        bottom:0;
+        right:0;
+        padding:0 20px 1px 45px;
+        background:url(http://newimg88.b0.upaiyun.com/newimg88/2014/09/ellipsis_bg.png) repeat-y;
     }
 </style>

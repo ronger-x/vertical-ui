@@ -71,7 +71,14 @@ module.exports = (options = {}) => ({
         pathRewrite: {
           '^/images': '/images'
         }
-      }
+      },
+    '/hacpai/':{
+        target: 'https://hacpai.com',
+        changeOrigin: true,
+        pathRewrite: {
+            '^/hacpai': '/api/v2'
+        }
+    }
     },
     historyApiFallback: {
       index: url.parse(options.dev ? '/assets/' : publicPath).pathname

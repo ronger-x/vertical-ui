@@ -13,7 +13,7 @@ export const state = () => ({
     isInit: false,
     name: '',
     nickname: '',
-    blogTitle: '',
+    articleTitle: '',
     avatarURL: '',
     blogURL: '/',
     role: 0, // 0-no login, 1-admin, 2-blog admin, 3-blog user, 4-visitor
@@ -26,15 +26,40 @@ export const state = () => ({
     snackModify: 'error',
     menu: [],
     tagsItems: [],
-    bodySide: ''
+    bodySide: '',
+    articleId: '1488603534762'
 })
 
 export const mutations = {
     setLocale (state, locale) {
         state.locale = locale
     },
+    setStatus (state, data) {
+        state.locale = data.locale
+        state.version = data.version
+        state.isInit = data.inited
+        state.role = data.role
+        state.name = data.name
+        state.nickname = data.nickname
+        state.blogTitle = data.blogTitle
+        state.blogURL = data.blogURL
+        state.blogs = data.blogs
+        state.avatarURL = data.avatarURL
+    },
+    setArticleId (state,data){
+      state.articleId = data.articleId
+    },
     setTagsItems (state, data) {
         state.tagsItems = data
+    },
+    setSnackBar (state, data) {
+        state.snackBar = data.snackBar
+        state.snackMsg = data.snackMsg
+        if (data.snackModify) {
+            state.snackModify = data.snackModify
+        } else {
+            state.snackModify = 'error'
+        }
     }
 }
 
