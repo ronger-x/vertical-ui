@@ -5,7 +5,7 @@
                 <el-col v-for="article in articles" :key="article.oId">
                     <el-card>
                         <div class="card-body d-flex flex-column">
-                            <h4><a @click.stop="goComments(article.oId)" >{{ article.articleTitle }}</a></h4>
+                            <h4><router-link :to="{name: 'article', params: {oId: article.oId}}" >{{ article.articleTitle }}</router-link></h4>
                             <div class="text-muted article-summary-md">{{ article.articlePreviewContent }}</div>
                             <el-row class="pt-5">
                                 <el-col :span="1" class="mr-3">

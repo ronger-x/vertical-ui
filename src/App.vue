@@ -9,14 +9,8 @@
                 </a>
             </div>
         </el-header>
-        <el-main>
-            <keep-alive>
-                <component
-                        v-bind:is="currentPageComponent"
-                        class="vertical-container"
-                        v-on:changeCurrentPage="changePage"
-                ></component>
-            </keep-alive>
+        <el-main class="vertical-container">
+            <router-view></router-view>
         </el-main>
         <el-footer>
             <Footer></Footer>
@@ -26,27 +20,15 @@
 </template>
 
 <script>
-import VerticalHome from "./pages/index";
-import HacPai from "./pages/hacpai/index";
-import Comments from "./pages/hacpai/comments/index";
 export default {
-    components: {VerticalHome, HacPai, Comments},
     data () {
         return {
             currentPage: 'HacPai'
         }
     },
     computed: {
-        currentPageComponent: function () {
-            return this.currentPage
-        }
     },
     methods: {
-        changePage(data){
-            //console.log(this.state.articleId);
-            this.currentPage = data.currentPage;
-            //this.state.articleId = data.articleId
-        }
     }
 }
 </script>
