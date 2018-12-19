@@ -17,9 +17,7 @@
                             </div>
                         </el-col>
                     </el-row>
-                    <div class="pt-7" id="content" :html="article.articleContent">
-
-                    </div>
+                    <div class="pt-7" v-html="article.articleContent"></div>
                 </div>
             </el-card>
         </el-col>
@@ -48,8 +46,7 @@
             }
         },
         async mounted () {
-            //const articleId = this.$parent.state.articleId;
-            const responseTopData = await this.axios.get('/hacpai/article/'+this.oId)
+            const responseTopData = await this.axios.get('/api/article/'+this.oId)
             console.log(responseTopData);
             if (responseTopData) {
                 this.$set(this, 'article', responseTopData.article)

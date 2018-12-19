@@ -58,27 +58,13 @@ module.exports = (options = {}) => ({
     host: '127.0.0.1',
     port: 8010,
     proxy: {
-      '/api/': {
-        target: 'http://127.0.0.1:8080',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/api': ''
-        }
-      },
-      '/images/':{
-        target: 'http://127.0.0.1:8080',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/images': '/images'
-        }
-      },
-    '/hacpai/':{
-        target: 'https://hacpai.com',
-        changeOrigin: true,
-        pathRewrite: {
-            '^/hacpai': '/api/v2'
-        }
-    }
+      '/api/':{
+          target: 'https://hacpai.com',
+          changeOrigin: true,
+          pathRewrite: {
+              '^/api': '/api/v2'
+          }
+      }
     },
     historyApiFallback: {
       index: url.parse(options.dev ? '/assets/' : publicPath).pathname

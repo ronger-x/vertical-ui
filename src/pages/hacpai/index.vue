@@ -57,7 +57,7 @@
             }
         },
         async mounted () {
-            const responseTopData = await this.axios.get('/hacpai/articles/latest/perfect')
+            const responseTopData = await this.axios.get('/api/articles/latest/perfect')
             if (responseTopData) {
                 this.$set(this, 'articles', responseTopData.articles)
                 this.$set(this, 'pagination', responseTopData.pagination)
