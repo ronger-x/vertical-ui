@@ -9,7 +9,7 @@
                 </a>
             </div>
         </el-header>
-        <el-main class="vertical-container">
+        <el-main>
             <router-view></router-view>
         </el-main>
         <el-footer>
@@ -77,6 +77,11 @@ export default {
         border-bottom: 1px solid rgba(0, 40, 100, 0.12);
         z-index: 80;
     }
+
+    .el-main {
+        padding: 20px 3px;
+    }
+
     .el-row {
         margin-bottom: 20px;
     }

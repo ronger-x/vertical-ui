@@ -1,11 +1,11 @@
 <template>
-    <el-row>
+    <el-row  class="vertical-container">
         <el-col :span="16">
             <el-row>
                 <el-col v-for="article in articles" :key="article.oId">
                     <el-card>
                         <div class="card-body d-flex flex-column">
-                            <h4><router-link :to="{name: 'article', params: {oId: article.oId}}" >{{ article.articleTitle }}</router-link></h4>
+                            <h4><router-link :to="{name: 'article', params: {oId: article.oId}}"  v-html="article.articleTitle"></router-link></h4>
                             <div class="text-muted article-summary-md">{{ article.articlePreviewContent }}</div>
                             <el-row class="pt-5">
                                 <el-col :span="1" class="mr-3">
@@ -15,7 +15,7 @@
                                 </el-col>
                                 <el-col :span="4">
                                     <div>
-                                        <a v-bind:href="article.articleAuthor.userUrl" class="text-default">{{ article.articleAuthor.userName }}</a>
+                                        <router-link :to="{name: 'user', params: {userName: article.articleAuthorName}}" class="text-default">{{ article.articleAuthor.userName }}</router-link>
                                         <small class="d-block text-muted">{{ article.timeAgo }}</small>
                                     </div>
                                     <div class="ml-auto text-muted">

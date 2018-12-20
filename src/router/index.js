@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../pages/hacpai/index'
 import Comments from '../pages/hacpai/comments/index'
+import User from '../pages/hacpai/users/index'
 
 
 Vue.use(VueRouter)
@@ -14,6 +15,8 @@ const router = new VueRouter({
         path: '/index', component: Home
     },{
         path: '/article/:oId', name:'article', component: Comments, props: true
+    },{
+        path: '/user/:userName', name:'user', component: User, props: true
     },{
         path:'*',redirect:'/index'
     }]

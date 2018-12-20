@@ -1,9 +1,9 @@
 <template>
-    <el-row>
+    <el-row  class="vertical-container">
         <el-col :span="20">
             <el-card>
                 <div  class="card-body d-flex flex-column" style="margin: 1.5rem 7rem;">
-                    <h1>{{ article.articleTitle }}</h1>
+                    <h1 v-html="article.articleTitle"></h1>
                     <el-row class="pt-5">
                         <el-col :span="1" class="mr-3">
                             <div class="avatar avatar-md"
@@ -12,7 +12,7 @@
                         </el-col>
                         <el-col :span="4">
                             <div>
-                                <a class="text-default" >{{ article.articleAuthor.userName }}</a>
+                                <router-link :to="{name: 'user', params: {userName: article.articleAuthorName}}" class="text-default" >{{ article.articleAuthor.userName }}</router-link>
                                 <small class="d-block text-muted">{{ article.timeAgo }}</small>
                             </div>
                         </el-col>
