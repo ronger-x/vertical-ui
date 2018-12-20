@@ -38,8 +38,8 @@ export default (ctx) => {
             return response.data
         }
     }, (error) => {
-        console.log(ctx.app.store.state.locale)
-        /*ctx.store.commit('setSnackBar', {
+        /*console.log(ctx.app.store.state.locale)
+        ctx.store.commit('setSnackBar', {
             snackBar: true,
             snackMsg: ctx.app.i18n.t('requestError', ctx.app.store.state.locale)
         })*/
