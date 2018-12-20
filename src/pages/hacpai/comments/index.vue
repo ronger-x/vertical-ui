@@ -17,7 +17,7 @@
                             </div>
                         </el-col>
                     </el-row>
-                    <div class="pt-7" v-html="article.articleContent"></div>
+                    <div class="pt-7 pipe-content__reset" v-html="article.articleContent"></div>
                 </div>
             </el-card>
         </el-col>
@@ -25,8 +25,6 @@
 </template>
 
 <script>
-    import {InitHljs} from '../../../theme/js/article'
-
     export default {
         name: "Comments",
         props: ['oId'],
@@ -47,9 +45,6 @@
                 }
             }
         },
-        updated: function () {
-            InitHljs();
-        },
         async mounted () {
             const responseTopData = await this.axios.get('/api/article/'+this.oId)
             if (responseTopData) {
@@ -60,6 +55,7 @@
     }
 </script>
 
-<style scoped>
-
+<style lang="scss">
+    @import '../../../theme/scss/basic';
+    @import '../../../theme/scss/github';
 </style>
