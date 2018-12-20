@@ -18,7 +18,8 @@
                 <div class="row row-cards row-deck" v-for="article in articles" :key="article.oId">
                     <el-col :span="6">
                         <div class="card">
-                            <a><img class="card-img-top" src="https://diycode.b0.upaiyun.com/photo/2018/960a38818560ad229b1a774164e722df.jpg"></a>
+                            <a v-show="article.articleImg1URL" ><img class="card-img-top" style="height: 10rem;" :src="article.articleImg1URL"></a>
+                            <a v-show="!article.articleImg1URL"><img class="card-img-top" style="height: 10rem;" src="https://diycode.b0.upaiyun.com/photo/2018/960a38818560ad229b1a774164e722df.jpg"></a>
                             <div class="card-body d-flex flex-column">
                                 <h4 class="article-header-md"><router-link :to="{name: 'article', params: {oId: article.oId}}" v-html="article.articleTitle"></router-link></h4>
                                 <div class="text-muted article-summary-md">{{ article.articlePreviewContent }}</div>
