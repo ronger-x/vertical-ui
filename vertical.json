@@ -1,0 +1,6 @@
+{
+  "Server": "http://cdnjs.cloudflare.com/ajax/libs",
+  "StaticServer": "",
+  "Port": "5897",
+  "AxiosBaseURL": "/api"
+}

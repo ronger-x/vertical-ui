@@ -25,6 +25,8 @@
 </template>
 
 <script>
+    import {InitHljs} from '../../../theme/js/article'
+
     export default {
         name: "Comments",
         props: ['oId'],
@@ -45,9 +47,11 @@
                 }
             }
         },
+        updated: function () {
+            InitHljs();
+        },
         async mounted () {
             const responseTopData = await this.axios.get('/api/article/'+this.oId)
-            console.log(responseTopData);
             if (responseTopData) {
                 this.$set(this, 'article', responseTopData.article)
                 this.$set(this, 'pagination', responseTopData.pagination)
