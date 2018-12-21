@@ -2,4 +2,6 @@
 
 *.css linguist-language=Vue
 
+*.scss linguist-language=Vue
+
 *.html linguist-language=Vue
