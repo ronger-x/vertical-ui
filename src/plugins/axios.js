@@ -1,10 +1,11 @@
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import config from '../../vertical'
 import Vue from 'vue'
 
 export default (ctx) => {
     const customAxios = axios.create({
-        baseURL: ''
+        baseURL: config.AxiosBaseURL
     })
 
     Vue.use(VueAxios, customAxios)
