@@ -35,6 +35,18 @@
                 </div>
             </div>
         </el-col>
+        <el-col>
+            <div class="vertical-container text-center">
+                <el-pagination v-model="pagination"
+                               :page-size="20"
+                               :pager-count="8"
+                               layout="prev, pager, next"
+                               :current-page="pagination.currentPage"
+                               :page-count="pagination.paginationPageCount"
+                               @current-change="currentChange">
+                </el-pagination>
+            </div>
+        </el-col>
     </el-row>
 </template>
 
@@ -52,21 +64,31 @@
                 articles: [],
                 pagination: {
                     "paginationPageCount": 0,
-                    "paginationPageNums": []
+                    "paginationPageNums": [],
+                    "currentPage": 1
+                }
+            }
+        },
+        methods: {
+            currentChange(val){
+                this.getData(val);
+            },
+            async getData(p){
+                const responseTopData = await await this.axios.get('user/'+this.userName+'/articles?p='+p);
+                if (responseTopData) {
+                    responseTopData.pagination.currentPage = p;
+                    this.$set(this, 'articles', responseTopData.articles)
+                    this.$set(this, 'pagination', responseTopData.pagination)
                 }
             }
         },
         async mounted () {
             const responseTopData = await this.axios.get('user/'+this.userName)
-            const responseTopData2 = await this.axios.get('user/'+this.userName+'/articles')
             if (responseTopData) {
                 this.$set(this, 'user', responseTopData.user)
             }
-            if (responseTopData2) {
-                this.$set(this, 'articles', responseTopData2.articles)
-                this.$set(this, 'pagination', responseTopData2.pagination)
-            }
-
+            const p = this.pagination.currentPage;
+            this.getData(p);
         }
     }
 </script>
@@ -122,9 +144,6 @@
         position: relative;
     }
 
-    .text-center {
-        text-align: center !important;
-    }
     .card-profile-img {
         max-width: 6rem;
         margin-top: -5rem;
