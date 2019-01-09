@@ -46,7 +46,7 @@
             }
         },
         async mounted () {
-            const responseTopData = await this.axios.get('/api/article/'+this.oId)
+            const responseTopData = await this.axios.get('article/'+this.oId)
             if (responseTopData) {
                 this.$set(this, 'article', responseTopData.article)
                 this.$set(this, 'pagination', responseTopData.pagination)
