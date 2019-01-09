@@ -27,6 +27,17 @@
                         </div>
                     </el-card>
                 </el-col>
+                <el-col>
+                    <el-pagination v-model="pagination"
+                            :page-size="20"
+                            :pager-count="8"
+                            layout="prev, pager, next"
+                            :current-page="pagination.currentPage"
+                            :page-count="pagination.paginationPageCount"
+                            @current-change="currentChange"
+                    >
+                    </el-pagination>
+                </el-col>
             </el-row>
         </el-col>
         <el-col :span="8">
@@ -43,25 +54,27 @@
                 articles: [],
                 pagination: {
                     "paginationPageCount": 0,
-                    "paginationPageNums": []
+                    "paginationPageNums": [],
+                    "currentPage": 1
                 }
             }
         },
         methods: {
-            goComments(id){
-                const data = {
-                    articleId: id,
-                    currentPage: 'Comments'
+            currentChange(val){
+                this.getData(val);
+            },
+            async getData(p){
+                const responseTopData = await this.axios.get('articles/latest/perfect?p='+p);
+                if (responseTopData) {
+                    responseTopData.pagination.currentPage = p;
+                    this.$set(this, 'articles', responseTopData.articles);
+                    this.$set(this, 'pagination', responseTopData.pagination);
                 }
-                this.$emit("changeCurrentPage",data)
             }
         },
-        async mounted () {
-            const responseTopData = await this.axios.get('/api/articles/latest/perfect')
-            if (responseTopData) {
-                this.$set(this, 'articles', responseTopData.articles)
-                this.$set(this, 'pagination', responseTopData.pagination)
-            }
+        mounted () {
+            const p = this.pagination.currentPage;
+            this.getData(p);
         }
     }
 </script>
