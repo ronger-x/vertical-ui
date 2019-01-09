@@ -34,6 +34,10 @@ export default {
 </script>
 
 <style>
+
+    a, li {
+        text-decoration:none !important;
+    }
     h1 a, h2 a, h3 a, h4 a, h5 a, h6 a, .h1 a, .h2 a, .h3 a, .h4 a, .h5 a, .h6 a {
         color: inherit;
     }
@@ -184,5 +188,9 @@ export default {
         right:0;
         padding:0 20px 1px 45px;
         background:url(http://newimg88.b0.upaiyun.com/newimg88/2014/09/ellipsis_bg.png) repeat-y;
+    }
+
+    .text-center {
+        text-align: center !important;
     }
 </style>

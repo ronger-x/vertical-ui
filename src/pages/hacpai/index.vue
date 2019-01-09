@@ -27,15 +27,14 @@
                         </div>
                     </el-card>
                 </el-col>
-                <el-col>
+                <el-col class="text-center">
                     <el-pagination v-model="pagination"
                             :page-size="20"
                             :pager-count="8"
                             layout="prev, pager, next"
                             :current-page="pagination.currentPage"
                             :page-count="pagination.paginationPageCount"
-                            @current-change="currentChange"
-                    >
+                            @current-change="currentChange">
                     </el-pagination>
                 </el-col>
             </el-row>
