@@ -28,7 +28,7 @@
                     </el-card>
                 </el-col>
                 <el-col class="text-center">
-                    <el-pagination v-model="pagination"
+                    <el-pagination v-show="pagination" v-model="pagination"
                             :page-size="20"
                             :pager-count="8"
                             layout="prev, pager, next"
