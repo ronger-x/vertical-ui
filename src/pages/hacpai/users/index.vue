@@ -2,8 +2,8 @@
     <el-row>
         <el-col :span="24">
             <div class="card card-profile">
-                <div v-show="!user.userHomeBImgURL" class="card-header" :style="{backgroundImage:'url(https://diycode.b0.upaiyun.com/photo/2018/bf4549180f1202423db9177e8dda5e31.jpg)'}" ></div>
-                <div v-show="user.userHomeBImgURL" class="card-header" :style="{backgroundImage:'url('+user.userHomeBImgURL+')'}" ></div>
+                <div v-if="!user.userHomeBImgURL" class="card-header" :style="{backgroundImage:'url(https://diycode.b0.upaiyun.com/photo/2018/bf4549180f1202423db9177e8dda5e31.jpg)', backgroundSize:'cover', backgroundPosition:'50%'}" ></div>
+                <div v-if="user.userHomeBImgURL" class="card-header" :style="{backgroundImage:'url('+user.userHomeBImgURL+')', backgroundSize:'cover', backgroundPosition:'50%'}" ></div>
                 <div class="card-body text-center">
                     <img class="card-profile-img" :src="user.userAvatarURL">
                     <h3 class="mb-3">{{user.userName}}</h3>
@@ -57,8 +57,8 @@
             }
         },
         async mounted () {
-            const responseTopData = await this.axios.get('/api/user/'+this.userName)
-            const responseTopData2 = await this.axios.get('/api/user/'+this.userName+'/articles')
+            const responseTopData = await this.axios.get('user/'+this.userName)
+            const responseTopData2 = await this.axios.get('user/'+this.userName+'/articles')
             if (responseTopData) {
                 this.$set(this, 'user', responseTopData.user)
             }
@@ -93,7 +93,7 @@
         border-radius: 3px;
     }
     .card-profile .card-header {
-        height: 9rem;
+        height: 20rem;
         background-size: cover;
     }
     .card-header:first-child {
