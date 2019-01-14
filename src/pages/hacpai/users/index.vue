@@ -10,7 +10,7 @@
                     <p class="mb-4">
                         {{user.userIntro}}
                     </p>
-                    <el-button type="primary" plain round><span class="fe fe-plus"></span> 关注</el-button>
+                    <!--<el-button type="primary" plain round><span class="fe fe-plus"></span> 关注</el-button>-->
                 </div>
             </div>
         </el-col>
