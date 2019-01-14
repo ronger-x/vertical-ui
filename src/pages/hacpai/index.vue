@@ -40,7 +40,54 @@
             </el-row>
         </el-col>
         <el-col :span="8">
-
+            <el-row style="padding-left: 5rem;">
+                <el-col>
+                    <el-card class="box-card">
+                        <div slot="header" class="clearfix">
+                            <span>粉丝榜</span>
+                        </div>
+                        <div v-for="(follower,index) in followers" :key="follower.oId" class="text item">
+                            <el-row v-if="index < 6" class="follower">
+                                <el-col :span="3">
+                                    <div class="avatar avatar-md"
+                                         :style="{backgroundImage:'url(' + follower.userAvatarURL + ')'}">
+                                    </div>
+                                </el-col>
+                                <el-col :span="18">
+                                    <div>
+                                        <router-link :to="{name: 'user', params: {userName: follower.userName}}" class="text-default" >{{ follower.userName }}</router-link>
+                                        <small v-if="follower.userIntro" class="d-block text-muted article-summary-sd">{{ follower.userIntro }}</small>
+                                        <small v-if="!follower.userIntro" class="d-block text-muted article-summary-sd">{{ follower.userNickname }}</small>
+                                    </div>
+                                </el-col>
+                            </el-row>
+                        </div>
+                    </el-card>
+                </el-col>
+                <el-col>
+                    <el-card class="box-card">
+                        <div slot="header" class="clearfix">
+                            <span>新手榜</span>
+                        </div>
+                        <div v-for="(newbie,index) in newbies" :key="newbie.oId" class="text item">
+                            <el-row v-if="index < 6" class="follower">
+                                <el-col :span="3">
+                                    <div class="avatar avatar-md"
+                                         :style="{backgroundImage:'url(' + newbie.userAvatarURL + ')'}">
+                                    </div>
+                                </el-col>
+                                <el-col :span="18">
+                                    <div>
+                                        <router-link :to="{name: 'user', params: {userName: newbie.userName}}" class="text-default" >{{ newbie.userName }}</router-link>
+                                        <small v-if="newbie.userIntro" class="d-block text-muted article-summary-sd">{{ newbie.userIntro }}</small>
+                                        <small v-if="!newbie.userIntro" class="d-block text-muted article-summary-sd">{{ newbie.userNickname }}</small>
+                                    </div>
+                                </el-col>
+                            </el-row>
+                        </div>
+                    </el-card>
+                </el-col>
+            </el-row>
         </el-col>
     </el-row>
 </template>
@@ -55,7 +102,9 @@
                     "paginationPageCount": 0,
                     "paginationPageNums": [],
                     "currentPage": 1
-                }
+                },
+                followers: [],
+                newbies: []
             }
         },
         methods: {
@@ -69,15 +118,51 @@
                     this.$set(this, 'articles', responseTopData.articles);
                     this.$set(this, 'pagination', responseTopData.pagination);
                 }
+            },
+            async getFollowers(){
+                const responseTopData = await this.axios.get('tops/users/followers');
+                if(responseTopData){
+                    this.$set(this,'followers',responseTopData.users)
+                }
+            },
+            async getNewbies(){
+                const responseTopData = await this.axios.get('tops/users/newbies');
+                if(responseTopData){
+                    this.$set(this,'newbies',responseTopData.users)
+                }
             }
         },
         mounted () {
             const p = this.pagination.currentPage;
             this.getData(p);
+            this.getFollowers();
+            this.getNewbies();
         }
     }
 </script>
 
 <style scoped>
+    .text {
+        font-size: 14px;
+    }
 
+    .item {
+        margin-bottom: 18px;
+    }
+
+    .clearfix:before,
+    .clearfix:after {
+        display: table;
+        content: "";
+    }
+    .clearfix:after {
+        clear: both
+    }
+
+    .box-card {
+        width: 426px;
+    }
+    .follower .el-col {
+        margin-bottom: 0;
+    }
 </style>
