@@ -30,5 +30,16 @@ npm run dev
 # build for production with minification
 npm run build
 ```
-# vertical-ui
-"# vertical-ui" 
+# vertical-ui 部署
+- 执行 `npm run build` 命令后，将打包文件部署至 `Tomcat` 
+- 配置 `Nginx`
+```
+location / {
+    proxy_pass http://localhost:8080/项目名/;
+}
+
+location /api/ {
+    proxy_pass https://abc.com/api/v2/;
+}
+```
+- 启动 `Tomcat` , `Nginx`
