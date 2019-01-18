@@ -17,7 +17,7 @@
                             </div>
                         </el-col>
                     </el-row>
-                    <div class="pt-7 pipe-content__reset" v-html="article.articleContent"></div>
+                    <div class="pt-7 pipe-content__reset" v-html="article.articleContent" style="overflow: hidden;"></div>
                 </div>
             </el-card>
         </el-col>
@@ -25,6 +25,9 @@
 </template>
 
 <script>
+    import Vue from 'vue';
+    import $ from 'jquery';
+
     export default {
         name: "Comments",
         props: ['oId'],
@@ -48,8 +51,15 @@
         async mounted () {
             const responseTopData = await this.axios.get('article/'+this.oId)
             if (responseTopData) {
-                this.$set(this, 'article', responseTopData.article)
-                this.$set(this, 'pagination', responseTopData.pagination)
+                this.$set(this, 'article', responseTopData.article);
+                this.$set(this, 'pagination', responseTopData.pagination);
+                Vue.nextTick(() => {
+                    $('*[data-src]').each(function () {
+                        const testImage = this.getAttribute('data-src');
+                        this.style.backgroundImage = 'url(' + testImage + ')';
+                        this.removeAttribute('data-src');
+                    })
+                });
             }
         }
     }

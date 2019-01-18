@@ -6,6 +6,27 @@
  */
 @import 'mixin';
 
+$img-bg: '../../../assets/index-bg.svg';
+
+.fn {
+  &__flex {
+    display: flex;
+  }
+  &__flex-1 {
+    flex: 1;
+    min-width: 1px;
+  }
+  &__flex-inline {
+    display: inline-flex;
+    align-items: center;
+  }
+}
+.ft {
+  &__smaller {
+    font-size: 12px;
+  }
+}
+
 .pipe-content__reset {
   font-family: $font-family-base;
   word-wrap: break-word;
@@ -199,6 +220,54 @@
       vertical-align: middle;
     }
   }
+
+  .link-card {
+    overflow: hidden;
+    background-color: #f1f7fe;
+    border-radius: 3px;
+    margin: 31px 70px 16px; // 内容只有链接是，tip 会被 content-reset 遮住
+    cursor: pointer;
+    box-shadow: 0 0 1px rgba(0, 0, 0, .11), 0 1px 2px rgba(0, 0, 0, .22);
+    line-height: 16px;
+    transition: background-color .15s cubic-bezier(.4, 0, .2, 1), box-shadow .15s cubic-bezier(.4, 0, .2, 1);
+    &:hover {
+      box-shadow: 0 0 3px rgba(0, 0, 0, .13), 0 3px 6px rgba(0, 0, 0, .26);
+      text-decoration: none;
+    }
+    &:visited .link-card__abstract {
+      color: #333;
+    }
+
+    &__info {
+      padding: 10px;
+      img {
+        cursor: pointer;
+        height: 20px;
+        width: 20px;
+        border-radius: 3px;
+        flex-shrink: 0;
+      }
+    }
+    &__image {
+      @include image-bg($img-bg);
+      width: 160px;
+      cursor: pointer;
+      background-color: #fff;
+    }
+    &__title {
+      font-size: 14px;
+      font-weight: 400;
+      color: #000;
+    }
+    &__abstract {
+      word-wrap: break-word;
+      @include text-clamp;
+      font-size: 13px;
+      color: $gray;
+      margin: 5px 0;
+    }
+  }
+
 }
 
 .pipe-preview {
