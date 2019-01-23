@@ -35,6 +35,12 @@ export default {
 
 <style>
 
+    body {
+        overflow-wrap: break-word;
+        -webkit-font-smoothing: antialiased;
+        background: url('assets/bg_dot.png') center top 80px no-repeat fixed rgb(246, 247, 248);
+    }
+
     a, li {
         text-decoration:none !important;
     }
